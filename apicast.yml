@@ -13,7 +13,7 @@ objects:
   metadata:
     name: "${APICAST_NAME}"
   spec:
-    replicas: 2
+    replicas: 1
     selector:
       deploymentconfig: "${APICAST_NAME}"
     strategy:
