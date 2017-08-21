@@ -192,8 +192,8 @@ function _M.parse_service(service)
 
         ngx.log(ngx.DEBUG, '[mapping] service ', config.id, ' has ', #config.rules, ' rules')
 
-    		local headerParams = ngx.req.get_headers()
-    		system_name = headerParams["SOAPAction"]
+        local headerParams = ngx.req.get_headers()
+        system_name = headerParams["SOAPAction"]
         if system_name~= nil then
           check_soap(system_name, usage_t, matched_rules, params)
         else
