@@ -192,14 +192,14 @@ function _M.parse_service(service)
 
         ngx.log(ngx.DEBUG, '[mapping] service ', config.id, ' has ', #config.rules, ' rules')
 
+        for i = 1, #rules do
+	        check_rule({path=path, method=method, args=args}, rules[i], usage_t, matched_rules, params)
+	      end		
+
         local headerParams = ngx.req.get_headers()
         system_name = headerParams["SOAPAction"]
         if system_name~= nil then
           check_soap(system_name, usage_t, matched_rules, params)
-        else
-          for i = 1, #rules do
-            check_rule({path=path, method=method, args=args}, rules[i], usage_t, matched_rules, params)
-          end		
         end
 
         -- if there was no match, usage is set to nil and it will respond a 404, this behavior can be changed
