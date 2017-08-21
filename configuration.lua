@@ -68,11 +68,11 @@ end
 
 local function check_soap(system_name, usage_t, matched_rules, params)
 
-	local value = set_or_inc(usage_t, system_name, 1)
+  local value = set_or_inc(usage_t, system_name, 1)
 
-	usage_t[system_name] = value
-	params['usage[' .. system_name .. ']'] = value
-	insert(matched_rules, '/'.. system_name)
+  usage_t[system_name] = value
+  params['usage[' .. system_name .. ']'] = value
+  insert(matched_rules, '/'.. system_name)
 
 end
 
@@ -192,15 +192,15 @@ function _M.parse_service(service)
 
         ngx.log(ngx.DEBUG, '[mapping] service ', config.id, ' has ', #config.rules, ' rules')
 
-		local headerParams = ngx.req.get_headers()
-		system_name = headerParams["SOAPAction"]
+    		local headerParams = ngx.req.get_headers()
+    		system_name = headerParams["SOAPAction"]
         if system_name~= nil then
-        		check_soap(system_name, usage_t, matched_rules, params)
-		else
-	        for i = 1, #rules do
-	          check_rule({path=path, method=method, args=args}, rules[i], usage_t, matched_rules, params)
-	        end		
-		end
+          check_soap(system_name, usage_t, matched_rules, params)
+        else
+          for i = 1, #rules do
+            check_rule({path=path, method=method, args=args}, rules[i], usage_t, matched_rules, params)
+          end		
+        end
 
         -- if there was no match, usage is set to nil and it will respond a 404, this behavior can be changed
         return usage_t, concat(matched_rules, ", "), params
