@@ -41,45 +41,36 @@ local function regexpify(path)
 end
 
 local function check_rule(req, rule, usage_t, matched_rules, params)
-  local pattern = rule.regexpified_pattern
-  local match = re_match(req.path, format("^%s", pattern), 'oj')
 
-   local headerParams = ngx.req.get_headers()    		
-   parameters["SOAPAction"]
-    		
-   ngx.log(ngx.DEBUG, '====================== start check_rule ')
-   ngx.log(ngx.DEBUG, '====================== start SOAPAction Header: ', parameters["SOAPAction"])
+	local headerParams = ngx.req.get_headers()
+	local system_name = headerParams["SOAPAction"]
+
+   	ngx.log(ngx.DEBUG, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk start system_name: ', system_name)
 
 
-
-  if match and req.method == rule.method then
-    local args = req.args
-
-    if rule.querystring_params(args) then -- may return an empty table
-      local system_name = rule.system_name
-      -- FIXME: this had no effect, what is it supposed to do?
-      -- when no querystringparams
-      -- in the rule. it's fine
-      -- for i,p in ipairs(rule.parameters or {}) do
-      --   param[p] = match[i]
-      -- end
-
-      local value = set_or_inc(usage_t, system_name, rule.delta)
+    if system_name~=nil then 
+      local value = set_or_inc(usage_t, system_name, 1)
 
       usage_t[system_name] = value
       params['usage[' .. system_name .. ']'] = value
-      insert(matched_rules, rule.pattern)
-    else
-
-    		--local headerParams = ngx.req.get_headers()    		
-    		--parameters["SOAPAction"]
-    		
-        ngx.log(ngx.DEBUG, '____________________tc IN ELSE SOAPAction Header: ')
-	
-    
+      insert(matched_rules, '/'.. system_name)
     end
-  end
+
 end
+
+
+local function check_soap(system_name, usage_t, matched_rules, params)
+
+	local value = set_or_inc(usage_t, system_name, 1)
+
+	usage_t[system_name] = value
+	params['usage[' .. system_name .. ']'] = value
+	insert(matched_rules, '/'.. system_name)
+
+end
+
+
+
 
 local function get_auth_params(method)
   local params
@@ -194,9 +185,15 @@ function _M.parse_service(service)
 
         ngx.log(ngx.DEBUG, '[mapping] service ', config.id, ' has ', #config.rules, ' rules')
 
-        for i = 1, #rules do
-          check_rule({path=path, method=method, args=args}, rules[i], usage_t, matched_rules, params)
-        end
+		local headerParams = ngx.req.get_headers()
+		system_name = headerParams["SOAPAction"]
+        if system_name~= nil then
+        		check_soap(system_name, usage_t, matched_rules, params)
+		else
+	        for i = 1, #rules do
+	          check_rule({path=path, method=method, args=args}, rules[i], usage_t, matched_rules, params)
+	        end		
+		end
 
         -- if there was no match, usage is set to nil and it will respond a 404, this behavior can be changed
         return usage_t, concat(matched_rules, ", "), params
