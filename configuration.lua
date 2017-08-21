@@ -45,7 +45,7 @@ local function check_rule(req, rule, usage_t, matched_rules, params)
 	local headerParams = ngx.req.get_headers()
 	local system_name = headerParams["SOAPAction"]
 
-   	ngx.log(ngx.DEBUG, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk start system_name: ', system_name)
+   	ngx.log(ngx.DEBUG, '***************************** start system_name: ', system_name)
 
 
     if system_name~=nil then 
