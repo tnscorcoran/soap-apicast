@@ -41,21 +41,28 @@ local function regexpify(path)
 end
 
 local function check_rule(req, rule, usage_t, matched_rules, params)
+  local pattern = rule.regexpified_pattern
+  local match = re_match(req.path, format("^%s", pattern), 'oj')
 
-	local headerParams = ngx.req.get_headers()
-	local system_name = headerParams["SOAPAction"]
+  if match and req.method == rule.method then
+    local args = req.args
 
-   	ngx.log(ngx.DEBUG, 'kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk start system_name: ', system_name)
+    if rule.querystring_params(args) then -- may return an empty table
+      local system_name = rule.system_name
+      -- FIXME: this had no effect, what is it supposed to do?
+      -- when no querystringparams
+      -- in the rule. it's fine
+      -- for i,p in ipairs(rule.parameters or {}) do
+      --   param[p] = match[i]
+      -- end
 
-
-    if system_name~=nil then 
-      local value = set_or_inc(usage_t, system_name, 1)
+      local value = set_or_inc(usage_t, system_name, rule.delta)
 
       usage_t[system_name] = value
       params['usage[' .. system_name .. ']'] = value
-      insert(matched_rules, '/'.. system_name)
+      insert(matched_rules, rule.pattern)
     end
-
+  end
 end
 
 
