@@ -27,11 +27,11 @@ At this point, in your 3scale Application Plans (access policies), you could now
 In your Analytics section, you now get overall traffic visibility at Method level and at individual metric or operation level.
 
 **_Method level visibility showing overall traffic to SOAP Service endpoint:_**
-![Method level visibility(https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/3-method-level-analytics.png)
+![Method level visibility](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/3-method-level-analytics.png)
 
 
 **_Metric level visibility showing traffic to individual SOAP operations:_**
-![Metric level visibility(https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/4-metric-operation-level-analytics.png)
+![Metric level visibility](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/4-metric-operation-level-analytics.png)
 
 
 ### Raw Docker gateway configuration
