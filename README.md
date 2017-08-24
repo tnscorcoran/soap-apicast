@@ -67,9 +67,3 @@ Test your Service with your equivalent of the following:
 curl -X POST --header "SoapAction: **_<the 3scale system name you configured for this operation>_**" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: **_< your API key >_**" -d '**_< your SOAP request XML >_**' http://**_< your route exposed by command 'oc expose service' above >_**:8080/**_< your SOAP endpoint >_** --verbose
 
 Check your 3scale Analytics. Both the operation metric and endpoint method will have incremented.
-
-
-
-**_<  >_**
-
-
