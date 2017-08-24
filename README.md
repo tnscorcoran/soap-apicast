@@ -4,7 +4,7 @@
 See ***********         MY BLOG         *************** for context and high level details     https://docs.google.com/document/d/1X4omcsZZ3gzMQYEDfPENBmuwaOrMvUePcSMDacTBSTA/edit#
 
 ## Overview
-They solution involves a small customization to one of the *Lua* scripting source files used by the gateway, *configuration.lua*. For precise details on the customization, use a *diff* tool on the file in this repo with the one we customized: https://github.com/3scale/apicast/blob/master/apicast/src/configuration.lua. 
+Aside from some minor configuration on the 3scale API Manager web interface, the solution mainly involves a small customization to one of the *Lua* scripting source files used by the gateway, *configuration.lua*. For precise details on the customization, use a *diff* tool on the file in this repo with the one we customized: https://github.com/3scale/apicast/blob/master/apicast/src/configuration.lua. 
 We create a Docker image using the standard APICast (aka 3scale Gateway) image and just override this lua file.
 
 ## Instructions
