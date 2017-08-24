@@ -12,8 +12,13 @@ To implement, you simply follow the *3scale API Manager configuration* section b
 
 ### 3scale API Manager configuration
 On the 3scale API Manager we configure the SOAP endpoint the same way we configure a REST endpoint. As follows:
+** Mapping SOAP Endpoint URL path to 3scale method **
 ![Mapping](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/1-Mapping.png)
+In my case, I use a fictitious Geo-Location SOAP Service - identified by the path /geo-endpoint. I map this a logical 3scale method geo-service. This will cause all SOAP operations to this endpoint authorized and reported under this catch all method.
 
+Additionally, in order to get the fine-grained, operation-level access control and traffic visibility, we define 3scale metrics for each operation. Navigate to API -> Your SOAP API -> Definition. Create a Method to capture all your SOAP requests to a given endpoint. Additionally create a Metric for each SOAP operation your Service exposes. In my case my Geo-Location service is configured with possible operations city, country etc as shown next:
+** API Definition with method and multiple metrics representing operations **
+![API Definition](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/2-method-metric-definition.png)
 
  
 ### Raw Docker gateway configuration
