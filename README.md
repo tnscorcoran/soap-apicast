@@ -43,10 +43,11 @@ There are some minor modifications to the instructions given in the [APIcast on 
 - cd soap-apicast 
 - docker run --name apicast --rm -p 8080:8080 -v $(pwd)/configuration.lua:/opt/app-root/src/src/configuration.lua -e THREESCALE_PORTAL_ENDPOINT=https://**_<3scale access token>_**@**_<3scale domain>_** -e APICAST_LOG_LEVEL=debug registry.access.redhat.com/3scale-amp20/apicast-gateway
 
-This will take a few seconds to start as it pulls down the image and your configuration from your API Manager, be it On-Prem on from the 3scale SaaS.
+This will take a few seconds to start as it pulls down the image and your configuration from your API Manager, be it On-Prem or from the 3scale SaaS.
 
 Test your Service with your equivalent of the following:
-curl -X POST --header "SoapAction: **_<the 3scale system name you condifured for this operation>_**" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: **_<yours>_**" -d '**_<your SOAP request XML>_**' http://**_<your gateway host>_**:8080/**_<your SOAP endpoint>_** --verbose
+
+curl -X POST --header "SoapAction: **_<the 3scale system name you configured for this operation>_**" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: **_<your API key>_**" -d '**_<your SOAP request XML>_**' http://**_<your gateway host>_**:8080/**_<your SOAP endpoint>_** --verbose
 
 Check your 3scale Analytics. Both the operation metric and endpoint method will have incremented.
 
