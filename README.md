@@ -37,11 +37,11 @@ In your Analytics section, you now get overall traffic visibility at Method leve
 ### Raw Docker gateway configuration
 There are some minor modifications to the instructions given in the [APIcast on Docker](https://support.3scale.net/docs/deployment-options/apicast-docker) documentation. Log on to your RHEL box and make the following commands (or your equivalents):
 
--sudo su
--systemctl start docker
--git clone **_<this repo or your fork>_**.git
--cd soap-apicast 
--docker run --name apicast --rm -p 8080:8080 -v $(pwd)/configuration.lua:/opt/app-root/src/src/configuration.lua -e THREESCALE_PORTAL_ENDPOINT=https://**_<3scale access token>_**@**_<3scale domain>_** -e APICAST_LOG_LEVEL=debug registry.access.redhat.com/3scale-amp20/apicast-gateway
+- sudo su
+- systemctl start docker
+- git clone **_<this repo or your fork>_**.git
+- cd soap-apicast 
+- docker run --name apicast --rm -p 8080:8080 -v $(pwd)/configuration.lua:/opt/app-root/src/src/configuration.lua -e THREESCALE_PORTAL_ENDPOINT=https://**_<3scale access token>_**@**_<3scale domain>_** -e APICAST_LOG_LEVEL=debug registry.access.redhat.com/3scale-amp20/apicast-gateway
 
 This will take a few seconds to start as it pulls down the image and your configuration from your API Manager, be it On-Prem on from the 3scale SaaS.
 
