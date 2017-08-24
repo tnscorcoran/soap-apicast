@@ -52,8 +52,24 @@ curl -X POST --header "SoapAction: **_<the 3scale system name you configured for
 Check your 3scale Analytics. Both the operation metric and endpoint method will have incremented.
 
 ### Openshift gateway configuration
+Some minor changes are needed to the instructions given in the [APIcast on Openshift](https://support.3scale.net/docs/deployment-options/apicast-openshift) documentation. Log on to your RHEL box and make the following commands (or your equivalents):
+
+- oc login
+- oc new-project soap-apicast
+- oc new-build https://github.com/tnscorcoran/soap-apicast --strategy=docker
+- oc get is/soap-apicast (slot in what this command gives for IMAGE_NAME two lines below)
+- oc secret new-basicauth apicast-configuration-url-secret --password=https://**_<3scale access token>_**@**_<3scale domain>_**
+- oc new-app -f https://raw.githubusercontent.com/3scale/apicast/v3.0.0/openshift/apicast-template.yml -p IMAGE_NAME=**_< your IMAGE_NAME >_** -p LOG_LEVEL=debug
+- oc expose service/apicast (it will give you the route something like: http://apicast-soap-apicast.**_< your Openshift domain >_**)
+
+Test your Service with your equivalent of the following:
+
+curl -X POST --header "SoapAction: **_<the 3scale system name you configured for this operation>_**" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: **_< your API key >_**" -d '**_< your SOAP request XML >_**' http://**_< your route exposed by command 'oc expose service' above >_**:8080/**_< your SOAP endpoint >_** --verbose
+
+Check your 3scale Analytics. Both the operation metric and endpoint method will have incremented.
 
 
-**_<>_**
+
+**_<  >_**
 
 
