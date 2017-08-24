@@ -65,6 +65,8 @@ Some minor changes are needed to the instructions given in the [APIcast on Opens
 - oc new-app -f https://raw.githubusercontent.com/3scale/apicast/v3.0.0/openshift/apicast-template.yml -p IMAGE_NAME=**_< your IMAGE_NAME >_** -p LOG_LEVEL=debug
 - oc expose service/apicast (it will give you the route something like: http://apicast-soap-apicast.**_< your Openshift domain >_**)
 
+**_After a couple of minutes 2 Gateway Pods should successfully deploy as follows:_**
+![Gateway Deployed]https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/5-openshift-soap-apicast-overview.png)
 Test your Service with your equivalent of the following:
 
 curl -X POST --header "SoapAction: **_<the 3scale system name you configured for this operation>_**" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: **_< your API key >_**" -d '**_< your SOAP request XML >_**' http://**_< your route exposed by command 'oc expose service' above >_**:8080/**_< your SOAP endpoint >_** --verbose
