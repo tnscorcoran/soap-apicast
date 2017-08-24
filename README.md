@@ -35,12 +35,26 @@ In your Analytics section, you now get overall traffic visibility at Method leve
 
 
 ### Raw Docker gateway configuration
+There are some minor modifications to the instructions given in the [APIcast on Docker](https://support.3scale.net/docs/deployment-options/apicast-docker) documentation. Log on to your RHEL box and make the following commands (or your equivalents):
 
+sudo su
+systemctl start docker
+docker run --name apicast --rm -p 8080:8080 \
+-v $(pwd)/configuration.lua:/opt/app-root/src/src/configuration.lua \
+-e THREESCALE_PORTAL_ENDPOINT=https://**_<3scale access token>_**@**_<3scale domain>_** \
+-e APICAST_LOG_LEVEL=debug \
+registry.access.redhat.com/3scale-amp20/apicast-gateway
 
+This will take a few seconds to start as it pulls down the image and your configuration from your API Manager, be it On-Prem on from the 3scale SaaS.
 
+Test your Service with your equivalent of the following:
+curl -X POST --header "SoapAction: **_<the 3scale system name you condifured for this operation>_**" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: **_<yours>_**" -d '**_<your SOAP request XML>_**' http://**_<your gateway host>_**:8080/**_<your SOAP endpoint>_** --verbose
+
+Chec kyour 3scale Analytics. Both the operation metric and endpoint method will have incremented.
 
 ### Openshift gateway configuration
 
 
+**_<>_**
 
 
