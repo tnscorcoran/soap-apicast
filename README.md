@@ -9,7 +9,7 @@ We create a Docker image using the standard APICast (aka 3scale Gateway) image a
 Note as discussed in the ***********          LINK TO BLOG         ***************, we use a HTTP Header called SOAPAction. This is because, by convention, this header identifies the SOAP Operation. Should you wish to use another, fork this repo and modify [this line](https://github.com/tnscorcoran/soap-apicast/blob/master/configuration.lua#L200) 
 
 ## Instructions
-To implement, you simply follow the *3scale API Manager configuration* section below. Then, depending on your desired implementation, follow either the *Raw Docker* or *Openshift* gateway configuration section that follows.  
+To implement, you simply follow the *3scale API Manager configuration* section below. Then, depending on your desired implementation, follow either the *Raw Docker* or *Openshift* gateway configuration section below.  
 
 ### 3scale API Manager configuration
 On the 3scale API Manager we configure the SOAP endpoint the same way we configure a REST endpoint.
