@@ -54,6 +54,9 @@ Check your 3scale Analytics. Both the operation metric and endpoint method will 
 ### Openshift gateway configuration
 Some minor changes are needed to the instructions given in the [APIcast on Openshift](https://support.3scale.net/docs/deployment-options/apicast-openshift) documentation. Log on to your RHEL box and make the following commands (or your equivalents):
 
+- sudo su
+- systemctl start docker
+- oc cluster up --public-hostname=**_< your Openshift domain >_** --routing-suffix=**_< your Openshift IP address >_**.xip.io --version=latest 
 - oc login
 - oc new-project soap-apicast
 - oc new-build https://github.com/tnscorcoran/soap-apicast --strategy=docker
