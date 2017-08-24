@@ -50,7 +50,7 @@ This will take a few seconds to start as it pulls down the image and your config
 Test your Service with your equivalent of the following:
 curl -X POST --header "SoapAction: **_<the 3scale system name you condifured for this operation>_**" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: **_<yours>_**" -d '**_<your SOAP request XML>_**' http://**_<your gateway host>_**:8080/**_<your SOAP endpoint>_** --verbose
 
-Chec kyour 3scale Analytics. Both the operation metric and endpoint method will have incremented.
+Check your 3scale Analytics. Both the operation metric and endpoint method will have incremented.
 
 ### Openshift gateway configuration
 
