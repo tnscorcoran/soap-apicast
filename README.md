@@ -15,7 +15,7 @@ On the 3scale API Manager we configure the SOAP endpoint the same way we configu
 ![Mapping](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/blob/master/_images/1-Mapping.png)
 
 
-
+ 
 ### Raw Docker gateway configuration
 
 
