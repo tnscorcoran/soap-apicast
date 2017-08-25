@@ -17,7 +17,7 @@ On the 3scale API Manager we configure the SOAP endpoint the same way we configu
 **_Create a new Service for SOAP:_**
 ![CreateService](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/1-create-service.png)
 
-Then choose *Integration -> edit APIcast configuration*.  Name it, give a System name, choose *Nginx Apicast self managed*, choose your Auth Mode (API Key in my case), then *Create Service*. Then configure as shown next.
+Name it, give a System name, choose *Nginx Apicast self managed*, choose your Auth Mode (API Key in my case), then *Create Service*. Then choose *Integration -> edit APIcast configuration*. Then configure as shown next.
 
 **_Mapping SOAP Endpoint URL path to 3scale method:_**
 ![Mapping](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/1-Mapping.png)
