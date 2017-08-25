@@ -12,12 +12,12 @@ Note as discussed in the ***********          LINK TO BLOG         *************
 To implement, you simply follow the *3scale API Manager configuration* section below. Then, depending on your desired implementation, follow either the *Raw Docker* or *Openshift* gateway configuration section below.  
 
 ### 3scale API Manager configuration
-On the 3scale API Manager we configure the SOAP endpoint the same way we configure a REST endpoint. On the APIs screen, first create a Service. Then choose *Integration -> edit APIcast configuration*.  Name it, give a System name, choose *Nginx Apicast self managed*, choose your Auth Mode (API Key in my case), then *Create Service*. 
+On the 3scale API Manager we configure the SOAP endpoint the same way we configure a REST endpoint. On the APIs screen, first create a Service. 
 
 **_Create a new Service for SOAP:_**
 ![CreateService](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/1-create-service.png)
 
-Then configure as shown next.
+Then choose *Integration -> edit APIcast configuration*.  Name it, give a System name, choose *Nginx Apicast self managed*, choose your Auth Mode (API Key in my case), then *Create Service*. Then configure as shown next.
 
 **_Mapping SOAP Endpoint URL path to 3scale method:_**
 ![Mapping](https://raw.githubusercontent.com/tnscorcoran/soap-apicast/master/_images/1-Mapping.png)
