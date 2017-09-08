@@ -80,7 +80,7 @@ Some minor changes are needed to the instructions given in the [APIcast on Opens
 
 - systemctl start docker
 
-- oc cluster up --public-hostname=**_< your Openshift domain >_** --routing-suffix=**_< your Openshift IP address >.xip.io --version=latest 
+- oc cluster up --public-hostname=< your Openshift domain > --routing-suffix=< your Openshift IP address >.xip.io --version=latest 
 
 - oc login
 
@@ -105,7 +105,7 @@ Some minor changes are needed to the instructions given in the [APIcast on Opens
 Test your Service with your equivalent of the following:
 
 ```
-curl -X POST --header "SoapAction: **_<the 3scale system name you configured for this operation>_**" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: **_< your API key >_**" -d '**_< your SOAP request XML >_**' http://**_< your route exposed by command 'oc expose service' above >_**:8080/**_< your SOAP endpoint >_** --verbose
+curl -X POST --header "SoapAction: <the 3scale system name you configured for this operation>" --header "Content-Type: application/soap+xml" --header "Accept: application/soap+xml" --header "user-key: < your API key >" -d '< your SOAP request XML >' http://< your route exposed by command 'oc expose service' above >:8080/< your SOAP endpoint > --verbose
 ```
 
 Check your 3scale Analytics. Both the operation metric and endpoint method will have incremented.
