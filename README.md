@@ -58,7 +58,7 @@ There are some minor modifications to the instructions given in the [APIcast on 
 
 - cd soap-apicast 
 
-- docker run --name apicast --rm -p 8080:8080 -v $(pwd)/configuration.lua:/opt/app-root/src/src/configuration.lua -e THREESCALE_PORTAL_ENDPOINT=https://<3scale access token>@<3scale domain> -e APICAST_LOG_LEVEL=debug registry.access.redhat.com/3scale-amp20/apicast-gateway
+- docker run --name apicast --rm -p 8080:8080 -v $(pwd)/configuration.lua:/opt/app-root/src/src/configuration.lua:z -e THREESCALE_PORTAL_ENDPOINT=https://<3scale access token>@<3scale domain> -e APICAST_LOG_LEVEL=debug registry.access.redhat.com/3scale-amp20/apicast-gateway
 
 ```
 
