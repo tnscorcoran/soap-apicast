@@ -199,6 +199,7 @@ function _M.parse_service(service)
         local headerParams = ngx.req.get_headers()
         system_name = headerParams["SOAPAction"]
         if system_name~= nil then
+	  system_name = system_name:gsub('%W','')			
           check_soap(system_name, usage_t, matched_rules, params)
         end
 
